@@ -1,4 +1,5 @@
 @mixin title {
+ color: $title-color;
  font-size: toRem(2.1);
  font-weight: 500;
  line-height: toRem(2.5);
@@ -21,6 +22,7 @@
 }
 
 @mixin subtitle {
+ color: $subtitle-color;
  font-size: toRem(1.7);
  font-weight: 500;
  line-height: toRem(1.9);
@@ -43,6 +45,7 @@
 }
 
 @mixin text {
+ color: $text-color;
  font-size: toRem(1.1);
  font-weight: 400;
  margin-bottom: $box-quarter;
