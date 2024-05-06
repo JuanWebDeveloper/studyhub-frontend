@@ -1,0 +1,42 @@
+* {
+ box-sizing: border-box;
+ list-style: none;
+ margin: none;
+ padding: none;
+ text-decoration: none;
+}
+
+body {
+ background-color: $primary-bg;
+}
+
+h1,
+h2 {
+ @include title;
+}
+
+h3,
+h4 {
+ @include subtitle;
+}
+
+p,
+span {
+ @include text;
+}
+
+button {
+ background-color: $button-bg;
+ border: none;
+ border-radius: 5px;
+ color: $white-color;
+ cursor: pointer;
+ font-size: toRem(1.1);
+ font-weight: 500;
+ padding: $box-half $box;
+ transition: $transition-primary;
+
+ &:hover {
+  background-color: $button-bg-hover;
+ }
+}
