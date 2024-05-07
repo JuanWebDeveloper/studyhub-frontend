@@ -7,3 +7,7 @@ export const StoreState = configureStore({
   ui: uiSlice.reducer,
  },
 });
+
+//*> Types representing the state and dispatch function of the Redux store.
+export type StoreStateType = ReturnType<typeof StoreState.getState>;
+export type StoreDispatchType = typeof StoreState.dispatch;
