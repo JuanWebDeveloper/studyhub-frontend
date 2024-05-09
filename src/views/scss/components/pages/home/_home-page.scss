@@ -50,6 +50,20 @@
    h2:last-child {
     margin-bottom: 0;
    }
+
+   .connected {
+    color: $success-color;
+   }
+
+   .disconnected {
+    color: $error-color;
+   }
+  }
+
+  h2 {
+   &.disconnected {
+    color: $error-color;
+   }
   }
  }
 
