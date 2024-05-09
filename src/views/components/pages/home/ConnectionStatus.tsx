@@ -18,9 +18,9 @@ export const ConnectionStatus = () => {
    .get('http://127.0.0.1:8000/connection-status')
    .then((response) => {
     setConnectionStatus(response.data);
-    dispatch(setLoading(false));
     dispatch(setHasErrors(false));
     dispatch(setErrorMessage(''));
+    dispatch(setLoading(false));
    })
    .catch((error) => {
     console.error('Error fetching connection status:', error);
@@ -36,8 +36,10 @@ export const ConnectionStatus = () => {
    {loading && <Loading />}
    {!loading && !hasErrors && connectionStatus.api_message && (
     <div className='connection-status'>
-     <h2>API Connection: {!hasErrors ? <span className='connected'>Connected</span> : <span className='disconnected'>Not Connected</span>}</h2>
-     <p>{!hasErrors && connectionStatus.api_message}</p>
+     <h2>
+      API Connection: <span className='connected'>Connected</span>
+     </h2>
+     <p className='connected'>{connectionStatus.api_message}</p>
 
      <h2>
       Database Connection:{' '}
@@ -47,7 +49,7 @@ export const ConnectionStatus = () => {
        <span className='disconnected'>Not Connected</span>
       )}
      </h2>
-     <p>{!hasErrors && connectionStatus.db_message}</p>
+     <p className={!hasErrors && !connectionStatus.db_connection ? 'disconnected' : 'connected'}>{!hasErrors && connectionStatus.db_message}</p>
     </div>
    )}
   </>

@@ -41,29 +41,17 @@
   }
 
   .connection-status {
-   h2 {
-    span {
-     color: $success-color;
-    }
-   }
-
    h2:last-child {
     margin-bottom: 0;
    }
-
-   .connected {
-    color: $success-color;
-   }
-
-   .disconnected {
-    color: $error-color;
-   }
   }
 
-  h2 {
-   &.disconnected {
-    color: $error-color;
-   }
+  .connected {
+   color: $success-color;
+  }
+
+  .disconnected {
+   color: $error-color;
   }
  }
 
