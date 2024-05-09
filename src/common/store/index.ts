@@ -4,3 +4,5 @@ export { StoreState } from './store';
 export type { StoreStateType, StoreDispatchType } from './store';
 //*> Export of the component that provides the global state to the rest of the application.
 export { SharedStateProvider } from './provider/sharedStateProvider';
+//*> Export of the actions that modify the global state.
+export { setHasErrors, setErrorMessage, setLoading } from './slices/uiSlice';
