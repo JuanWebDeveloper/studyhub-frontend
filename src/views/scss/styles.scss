@@ -1,9 +1,13 @@
-//*> Style Variables
+//*> Style variables
 @import './variables/animations/animations.scss';
 @import './variables/color';
 @import './variables/box';
 @import './variables/function';
 @import './variables/fonts';
 @import './variables/shadow';
-//*> Global Styles
+//*> Global styles
 @import './globals';
+//*> Components styles
+@import './components/pages/home/home-page';
+//*> Shared components styles
+@import './components/shared/loading/loading';

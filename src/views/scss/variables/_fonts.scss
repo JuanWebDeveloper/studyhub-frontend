@@ -1,9 +1,10 @@
 @mixin title {
  color: $title-color;
  font-size: toRem(2.1);
- font-weight: 500;
+ font-weight: 400;
  line-height: toRem(2.5);
- margin-bottom: $box-half;
+ margin: $box-onehalf 0;
+ margin-top: 0;
 
  @media (max-width: 1280px) {
   font-size: toRem(1.9);
@@ -24,9 +25,10 @@
 @mixin subtitle {
  color: $subtitle-color;
  font-size: toRem(1.7);
- font-weight: 500;
+ font-weight: 400;
  line-height: toRem(1.9);
  margin: $box-half 0;
+ margin-top: 0;
 
  @media (max-width: 1280px) {
   font-size: toRem(1.5);
@@ -47,8 +49,9 @@
 @mixin text {
  color: $text-color;
  font-size: toRem(1.1);
- font-weight: 400;
- margin-bottom: $box-quarter;
+ font-weight: 300;
+ margin: $box-quarter 0;
+ margin-top: 0;
 
  span {
   font-weight: 500;

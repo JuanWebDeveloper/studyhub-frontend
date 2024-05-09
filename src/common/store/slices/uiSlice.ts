@@ -10,7 +10,17 @@ const initialState: UiSlicesModel = {
 export const uiSlice = createSlice({
  name: 'ui',
  initialState,
- reducers: {},
+ reducers: {
+  setHasErrors: (state, action: PayloadAction<boolean>) => {
+   state.hasErrors = action.payload;
+  },
+  setErrorMessage: (state, action: PayloadAction<string>) => {
+   state.errorMessage = action.payload;
+  },
+  setLoading: (state, action: PayloadAction<boolean>) => {
+   state.loading = action.payload;
+  },
+ },
 });
 
-export const {} = uiSlice.actions;
+export const { setHasErrors, setErrorMessage, setLoading } = uiSlice.actions;

@@ -1,0 +1,64 @@
+.home-page {
+ align-items: center;
+ display: flex;
+ justify-content: center;
+ left: 0;
+ min-height: 100vh;
+ position: absolute;
+ padding: $box-onehalf;
+ top: 0;
+ width: 100%;
+
+ .content {
+  background-color: $secondary-bg;
+  border-radius: 5px;
+  box-shadow: $primary-shadow;
+  padding: $box-onehalf;
+  text-align: center;
+  width: 100%;
+
+  .header-info {
+   background-color: $quaternary-bg;
+   border-radius: 5px;
+   box-shadow: $secondary-shadow;
+   margin-bottom: $box-onehalf;
+   padding: $box-half;
+
+   .logo {
+    span {
+     color: $subtitle-color;
+     font-size: toRem(1.2);
+    }
+   }
+
+   h3 {
+    color: $info-color;
+   }
+
+   h2 {
+    margin-bottom: 0;
+   }
+  }
+
+  .connection-status {
+   h2:last-child {
+    margin-bottom: 0;
+   }
+  }
+
+  .connected {
+   color: $success-color;
+  }
+
+  .disconnected {
+   color: $error-color;
+  }
+ }
+
+ @media (max-width: 600px) {
+  padding: $box-onehalf $box-quarter;
+  .content {
+   padding: $box-half $box-quarter;
+  }
+ }
+}
