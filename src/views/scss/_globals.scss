@@ -10,27 +10,6 @@ body {
  background-color: $primary-bg;
 }
 
-.bg-secondary {
- background-color: $secondary-bg;
- text-align: center;
- padding: box-half;
- margin-bottom: $box-onehalf;
-}
-
-.bg-tertiary {
- background-color: $tertiary-bg;
- text-align: center;
- padding: box-half;
- margin-bottom: $box-onehalf;
-}
-
-.bg-quaternary {
- background-color: $quaternary-bg;
- text-align: center;
- padding: box-half;
- margin-bottom: $box-onehalf;
-}
-
 h1,
 h2 {
  @include title;
@@ -41,8 +20,7 @@ h4 {
  @include subtitle;
 }
 
-p,
-span {
+p {
  @include text;
 }
 
