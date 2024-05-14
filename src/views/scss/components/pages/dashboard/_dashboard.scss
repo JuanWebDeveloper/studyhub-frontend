@@ -1,0 +1,95 @@
+.dashboard {
+ left: 0;
+ position: absolute;
+ padding: $box-onehalf;
+ top: 0;
+ width: 100vw;
+
+ &-header {
+  align-items: center;
+  background-color: $tertiary-bg;
+  box-shadow: $primary-shadow;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: $box-half;
+  width: 100%;
+
+  h2 {
+   font-weight: 500;
+   text-shadow: $title-shadow;
+   text-align: center;
+  }
+
+  .dashboard-actions {
+   display: flex;
+   justify-content: space-evenly;
+   margin-top: $box-half;
+   position: relative;
+   width: 70%;
+
+   button {
+    font-size: toRem(0.85);
+    padding: $box-quarter $box-onehalf;
+
+    &:nth-child(1) {
+     background-color: $create-button-bg;
+
+     &:hover {
+      background-color: $create-button-hover-bg;
+     }
+    }
+
+    &:nth-child(3) {
+     background-color: $edit-button-bg;
+
+     &:hover {
+      background-color: $edit-button-hover-bg;
+     }
+    }
+
+    &:nth-child(4) {
+     background-color: $delete-button-bg;
+
+     &:hover {
+      background-color: $delete-button-hover-bg;
+     }
+    }
+   }
+  }
+ }
+
+ @media (max-width: 1024px) {
+  &-header {
+   .dashboard-actions {
+    width: 100%;
+   }
+  }
+ }
+
+ @media (max-width: 768px) {
+  &-header {
+   .dashboard-actions {
+    flex-direction: column;
+    width: 55%;
+
+    button {
+     margin-bottom: $box-half;
+
+     &:nth-child(4) {
+      margin-bottom: 0;
+     }
+    }
+   }
+  }
+ }
+ @media (max-width: 500px) {
+  &-header {
+   .dashboard-actions {
+    width: 65%;
+   }
+  }
+ }
+}
