@@ -4,7 +4,13 @@ $secondary-bg: #dfe1e2;
 $tertiary-bg: #d0d0d6;
 $quaternary-bg: #b9bbbb;
 $button-bg: #623c80;
-$button-bg-hover: #9232be;
+$button-bg-hover: darken($button-bg, 10%);
+$create-button-bg: #2e7d32;
+$create-button-hover-bg: darken($create-button-bg, 10%);
+$edit-button-bg: #0050a0;
+$edit-button-hover-bg: darken($edit-button-bg, 10%);
+$delete-button-bg: #991b1b;
+$delete-button-hover-bg: darken($delete-button-bg, 10%);
 // UI Element colors
 $title-color: #623c80;
 $subtitle-color: #9232be;
