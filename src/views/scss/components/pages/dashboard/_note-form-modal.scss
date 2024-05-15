@@ -1,0 +1,122 @@
+.note-form {
+ align-items: center;
+ background-color: rgba($quaternary-bg, 0.65);
+ backdrop-filter: blur(5px);
+ display: flex;
+ height: 100vh;
+ justify-content: center;
+ left: 0;
+ position: absolute;
+ top: 0;
+ width: 100vw;
+
+ .model-close-button {
+  cursor: pointer;
+  height: 35px;
+  position: absolute;
+  right: $box-onehalf;
+  top: $box-onehalf;
+  width: 35px;
+
+  .close-icon-bar {
+   background-color: $text-color;
+   box-shadow: $secondary-shadow;
+   height: 3px;
+   transition: $transition-secondary;
+   width: 100%;
+
+   &:first-child {
+    transform: rotate(45deg);
+   }
+
+   &:last-child {
+    transform: rotate(-45deg);
+   }
+  }
+
+  &:hover .close-icon-bar {
+   box-shadow: $tertiary-shadow;
+   scale: 1.25;
+  }
+ }
+
+ .form-content {
+  background-color: rgba($secondary-bg, 0.55);
+  border-radius: 10px;
+  box-shadow: $tertiary-shadow;
+  min-width: 50%;
+  max-width: 95%;
+  position: relative;
+  padding: $box-onehalf;
+
+  h2 {
+   color: $success-color;
+   text-align: center;
+  }
+
+  form {
+   align-items: flex-start;
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+   width: 100%;
+
+   label {
+    color: $text-color;
+    cursor: pointer;
+    font-size: toRem(0.9);
+    transition: $transition-tertiary;
+
+    &:hover {
+     scale: 1.1;
+     transform: translateX(5px);
+    }
+   }
+
+   input[type='text'],
+   textarea,
+   select {
+    background-color: rgba($primary-bg, 0.7);
+    box-shadow: $secondary-shadow;
+    border-radius: 5px;
+    border: none;
+    font-size: toRem(0.8);
+    padding: $box-quarter;
+    transition: $transition-fourth;
+    width: 100%;
+
+    &:focus {
+     box-shadow: $tertiary-shadow;
+     outline: none;
+    }
+   }
+
+   textarea {
+    min-height: 100px;
+    max-height: 175px;
+    resize: vertical;
+   }
+
+   select {
+    background-color: rgba($button-bg, 0.65);
+    cursor: pointer;
+    color: $white-color;
+    text-shadow: $white-shadow;
+
+    option {
+     text-align: center;
+    }
+   }
+
+   button[type='submit'] {
+    align-self: flex-end;
+    background-color: $create-button-bg;
+    margin-top: $box-quarter;
+
+    &:hover {
+     background-color: $create-button-hover-bg;
+    }
+   }
+  }
+ }
+}
