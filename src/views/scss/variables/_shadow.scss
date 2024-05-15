@@ -1,5 +1,9 @@
-$primary-shadow: 0px 8px 16px rgba(#222222, 0.6);
-$secondary-shadow: 0 2px 8px rgba(#222222, 0.55);
+$primary-shadow: 0px 8px 16px rgba($text-color, 0.6);
+$secondary-shadow: 0 2px 8px rgba($text-color, 0.55);
+$tertiary-shadow: 0 0 20px 5px rgba($text-color, 0.45);
+
 // Text shadows
 $title-shadow: 0.55px 0.55px 1.55px rgba($title-color, 0.65), 0.55px 0.55px 1.55px rgba($title-color, 0.65),
  0.55px 0.55px 1.55px rgba($title-color, 0.65);
+$white-shadow: 0.25px 0.25px 1.25px rgba($white-color, 0.65), 0.25px 0.25px 1.25px rgba($white-color, 0.65),
+ 0.25px 0.25px 1.25px rgba($white-color, 0.65);

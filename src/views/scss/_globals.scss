@@ -30,9 +30,9 @@ button {
  border-radius: 5px;
  color: $white-color;
  cursor: pointer;
- font-size: toRem(1.1);
+ font-size: toRem(0.9);
  font-weight: 500;
- padding: $box-half $box-onehalf;
+ padding: $box-quarter $box-onehalf;
  transition: $transition-primary;
 
  &:hover {
