@@ -1,3 +1,5 @@
+import { NoteFormModal } from '@/src/views/components';
+
 const Dashboard = () => {
  return (
   <div className='dashboard'>
@@ -11,6 +13,7 @@ const Dashboard = () => {
      <button>Delete Notes</button>
     </div>
    </header>
+   <NoteFormModal />
   </div>
  );
 };
