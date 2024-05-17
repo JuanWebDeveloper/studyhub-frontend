@@ -2,7 +2,7 @@
 
 import Select from 'react-select';
 //*> Import the note categories.
-import { noteCategories } from '@/src/common/utils';
+import { noteCategories, customNoteCategorySelectStyles } from '@/src/common/utils';
 
 export const NoteFormModal = () => {
  return (
@@ -24,7 +24,7 @@ export const NoteFormModal = () => {
       <textarea id='content' name='content' placeholder='Type the content of your note here'></textarea>
      </div>
      <div className='form-group'>
-      <Select placeholder='Select a category for your note' options={noteCategories} />
+      <Select isSearchable={false} placeholder='Select a category for your note' options={noteCategories} styles={customNoteCategorySelectStyles} />
      </div>
      <button type='submit'>Create Note</button>
     </form>

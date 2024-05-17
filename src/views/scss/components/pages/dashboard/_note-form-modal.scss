@@ -17,6 +17,7 @@
   right: $box-onehalf;
   top: $box-onehalf;
   width: 35px;
+  z-index: 10;
 
   .close-icon-bar {
    background-color: $text-color;
@@ -45,7 +46,7 @@
   border-radius: 10px;
   box-shadow: $tertiary-shadow;
   min-width: 50%;
-  max-width: 95%;
+  max-width: 90%;
   position: relative;
   padding: $box-onehalf;
 
@@ -58,53 +59,51 @@
    align-items: flex-start;
    display: flex;
    flex-direction: column;
-   gap: 15px;
+   gap: 20px;
    width: 100%;
 
-   label {
-    color: $text-color;
-    cursor: pointer;
-    font-size: toRem(0.9);
-    transition: $transition-tertiary;
-
-    &:hover {
-     scale: 1.1;
-     transform: translateX(5px);
-    }
-   }
-
-   input[type='text'],
-   textarea,
-   select {
-    background-color: rgba($primary-bg, 0.7);
-    box-shadow: $secondary-shadow;
-    border-radius: 5px;
-    border: none;
-    font-size: toRem(0.8);
-    padding: $box-quarter;
-    transition: $transition-fourth;
+   .form-group {
+    position: relative;
     width: 100%;
 
-    &:focus {
-     box-shadow: $tertiary-shadow;
-     outline: none;
+    label {
+     color: $text-color;
+     cursor: pointer;
+     font-size: toRem(0.9);
+     transition: $transition-tertiary;
+
+     &:hover {
+      scale: 1.1;
+      transform: translateX(5px);
+     }
     }
-   }
 
-   textarea {
-    min-height: 100px;
-    max-height: 175px;
-    resize: vertical;
-   }
+    input[type='text'],
+    textarea {
+     background-color: rgba($primary-bg, 0.584);
+     box-shadow: $secondary-shadow;
+     border-radius: 5px;
+     border: 2px solid transparent;
+     font-size: toRem(0.8);
+     padding: $box-quarter;
+     transition: $transition-fourth;
+     width: 100%;
 
-   select {
-    background-color: rgba($button-bg, 0.65);
-    cursor: pointer;
-    color: $white-color;
-    text-shadow: $white-shadow;
+     &:focus {
+      box-shadow: $tertiary-shadow;
+      border-color: $edit-button-bg;
+      outline: none;
+     }
+    }
 
-    option {
-     text-align: center;
+    textarea {
+     min-height: 100px;
+     max-height: 175px;
+     resize: vertical;
+    }
+
+    div {
+     transition: $transition-fourth;
     }
    }
 
