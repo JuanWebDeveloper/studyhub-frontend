@@ -1,3 +1,9 @@
+'use client';
+
+import Select from 'react-select';
+//*> Import the note categories.
+import { noteCategories } from '@/src/common/utils';
+
 export const NoteFormModal = () => {
  return (
   <div className='note-form'>
@@ -9,17 +15,17 @@ export const NoteFormModal = () => {
     <h2>Create a Note</h2>
 
     <form>
-     <label htmlFor='title'>Title</label>
-     <input type='text' id='title' name='title' placeholder='Type a title for your note' />
-     <label htmlFor='content'>Content</label>
-     <textarea id='content' name='content' placeholder='Type the content of your note here'></textarea>
-     <select id='category' name='category'>
-      <option value=''>Select a category for your note</option>
-      <option value='personal'>Personal</option>
-      <option value='work'>Work</option>
-      <option value='school'>School</option>
-      <option value='other'>Other</option>
-     </select>
+     <div className='form-group'>
+      <label htmlFor='title'>Title</label>
+      <input type='text' id='title' name='title' placeholder='Type a title for your note' />
+     </div>
+     <div className='form-group'>
+      <label htmlFor='content'>Content</label>
+      <textarea id='content' name='content' placeholder='Type the content of your note here'></textarea>
+     </div>
+     <div className='form-group'>
+      <Select placeholder='Select a category for your note' options={noteCategories} />
+     </div>
      <button type='submit'>Create Note</button>
     </form>
    </div>
