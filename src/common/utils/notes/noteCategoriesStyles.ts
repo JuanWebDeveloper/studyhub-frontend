@@ -1,6 +1,7 @@
-import { StylesConfig } from 'react-select';
+import { GroupBase, StylesConfig } from 'react-select';
+import { SelectOptionModel } from '@/src/common/models';
 
-export const customNoteCategorySelectStyles: StylesConfig = {
+export const customNoteCategorySelectStyles: StylesConfig<SelectOptionModel, boolean, GroupBase<SelectOptionModel>> = {
  control: (styles, { isFocused }) => ({
   ...styles,
   backgroundColor: '#f7f8f895',
