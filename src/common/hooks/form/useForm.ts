@@ -1,39 +1,24 @@
 import { useState } from 'react';
+import { FormStateModel, InputChangeModel, SelectOptionModel } from '@/src/common/models';
 
-type FormState = {
- title: string;
- content: string;
- category: string;
-};
+export const useForm = (initialState: FormStateModel = { title: '', content: '', category: '' }) => {
+ const [formValues, setFormValues] = useState<FormStateModel>(initialState);
 
-type InputChange = {
- name: string;
- value: string;
-};
-
-type OptionType = {
- value: string;
- label: string;
-};
-
-export const useForm = (initialState: FormState = { title: '', content: '', category: '' }) => {
- const [formValues, setFormValues] = useState<FormState>(initialState);
-
- const handleInputChange = ({ name, value }: InputChange) => {
+ const handleInputChange = ({ name, value }: InputChangeModel) => {
   setFormValues((prevValues) => ({
    ...prevValues,
    [name]: value,
   }));
  };
 
- const handleSelectChange = (selectedOption: OptionType | null) => {
+ const handleSelectChange = (selectedOption: SelectOptionModel | null) => {
   handleInputChange({
    name: 'category',
    value: selectedOption ? selectedOption.value : '',
   });
  };
 
- const resetOrInitialize = (newFormState: FormState = initialState) => setFormValues(newFormState);
+ const resetOrInitialize = (newFormState: FormStateModel = initialState) => setFormValues(newFormState);
 
  return { formValues, handleInputChange, handleSelectChange, resetOrInitialize };
 };
