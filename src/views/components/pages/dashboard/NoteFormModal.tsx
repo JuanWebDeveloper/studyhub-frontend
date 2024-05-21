@@ -3,11 +3,18 @@
 import Select from 'react-select';
 //*> Import the note categories.
 import { noteCategories, customNoteCategorySelectStyles } from '@/src/common/utils';
+import { stateBooleanModel } from '@/src/common/models';
 
-export const NoteFormModal = () => {
+type NoteFormModalProps = {
+ modalState: stateBooleanModel;
+};
+
+export const NoteFormModal = ({ modalState: [isModalOpen, setIsModalOpen] }: NoteFormModalProps) => {
+ const handleModalClose = () => setIsModalOpen(false);
+
  return (
-  <div className='note-form'>
-   <div className='model-close-button'>
+  <div className={`note-form ${isModalOpen ? 'fadeIn' : 'fadeOut'}`}>
+   <div className='model-close-button' onClick={handleModalClose}>
     <div className='close-icon-bar'></div>
     <div className='close-icon-bar'></div>
    </div>

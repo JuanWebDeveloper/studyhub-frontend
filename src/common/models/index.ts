@@ -2,3 +2,5 @@
 export type { UiSlicesModel } from './store/slices/uiSlicesModel';
 //*> Export of the API endpoints responses models.
 export type { APIEndponitConnectionStatus } from './apiEnpointsModels/endpointConnectionStatus';
+//*> Export of models for useState.
+export type { stateBooleanModel } from './useState/useStateModels';
