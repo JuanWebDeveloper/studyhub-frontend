@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ActionMeta, MultiValue, SingleValue } from 'react-select';
 import { FormStateModel, InputChangeModel, SelectOptionModel } from '@/src/common/models';
 
 export const useForm = (initialState: FormStateModel = { title: '', content: '', category: '' }) => {
@@ -22,7 +23,8 @@ export const useForm = (initialState: FormStateModel = { title: '', content: '',
   }));
  };
 
- const handleSelectChange = (selectedOption: SelectOptionModel | null) => {
+ const handleSelectChange = (newValue: MultiValue<SelectOptionModel> | SingleValue<SelectOptionModel>, _am: ActionMeta<SelectOptionModel>) => {
+  const selectedOption = Array.isArray(newValue) ? newValue[0] : newValue;
   handleInputChange({
    name: 'category',
    value: selectedOption ? selectedOption.value : '',
