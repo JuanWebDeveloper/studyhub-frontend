@@ -33,7 +33,11 @@ export const ConnectionStatus = () => {
 
  return (
   <>
-   {loading && <Loading />}
+   {loading && (
+    <div className='connection-status'>
+     <Loading />
+    </div>
+   )}
    {!loading && !hasErrors && connectionStatus.api_message && (
     <div className='connection-status'>
      <h2>

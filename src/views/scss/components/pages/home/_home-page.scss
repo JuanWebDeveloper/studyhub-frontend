@@ -41,6 +41,9 @@
   }
 
   .connection-status {
+   min-height: 100px;
+   position: relative;
+
    h2:last-child {
     margin-bottom: 0;
    }
