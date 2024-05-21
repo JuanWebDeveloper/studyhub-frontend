@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState } from 'react';
 
 type FormState = {
  title: string;
@@ -6,20 +6,34 @@ type FormState = {
  category: string;
 };
 
+type InputChange = {
+ name: string;
+ value: string;
+};
+
+type OptionType = {
+ value: string;
+ label: string;
+};
+
 export const useForm = (initialState: FormState = { title: '', content: '', category: '' }) => {
  const [formValues, setFormValues] = useState<FormState>(initialState);
 
- const handleInputChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-  const nameInputChange = target.name;
-  const valueInputChange = target.value;
-
+ const handleInputChange = ({ name, value }: InputChange) => {
   setFormValues((prevValues) => ({
    ...prevValues,
-   [nameInputChange]: valueInputChange,
+   [name]: value,
   }));
+ };
+
+ const handleSelectChange = (selectedOption: OptionType | null) => {
+  handleInputChange({
+   name: 'category',
+   value: selectedOption ? selectedOption.value : '',
+  });
  };
 
  const resetOrInitialize = (newFormState: FormState = initialState) => setFormValues(newFormState);
 
- return { formValues, handleInputChange, resetOrInitialize };
+ return { formValues, handleInputChange, handleSelectChange, resetOrInitialize };
 };
