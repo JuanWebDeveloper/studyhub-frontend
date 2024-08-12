@@ -23,7 +23,7 @@ export const NoteFormModal = ({ modalState: [isModalOpen, setIsModalOpen] }: Not
  const handleSubmit: ChangeEventHandler<HTMLFormElement> = (event) => {
   event.preventDefault();
 
-  const noteData = { title, content, category };
+  const noteData = { title, content, category: category === '' ? 'Uncategorized' : category };
 
   axios
    .post('http://127.0.0.1:8000/create-note', noteData)
