@@ -1,20 +1,20 @@
 'use client';
-
-import Select from 'react-select';
 import { ChangeEventHandler } from 'react';
-//*> Import the note categories.
+import Select from 'react-select';
+import axios from 'axios';
 import { noteCategories, customNoteCategorySelectStyles } from '@/src/common/utils';
-//*> Import the model for the modal state.
 import { stateBooleanModel } from '@/src/common/models';
-//*> Import the hook to manage the form state.
-import { useForm } from '@/src/common/hooks';
+import { useForm, useStoreSelector, useStoreDispatch } from '@/src/common/hooks';
+import { setLoading, setHasErrors, setErrorMessage } from '@/src/common/store';
+import { Loading } from '@/src/views/components';
 
 type NoteFormModalProps = {
  modalState: stateBooleanModel;
 };
 
 export const NoteFormModal = ({ modalState: [isModalOpen, setIsModalOpen] }: NoteFormModalProps) => {
- const handleModalClose = () => setIsModalOpen(false);
+ const { loading } = useStoreSelector((state) => state.ui);
+ const dispatch = useStoreDispatch();
 
  //*> Use the custom hook to manage the form state.
  const { formValues, handleInputChange, handleSelectChange, resetOrInitialize } = useForm();
@@ -22,13 +22,34 @@ export const NoteFormModal = ({ modalState: [isModalOpen, setIsModalOpen] }: Not
 
  const handleSubmit: ChangeEventHandler<HTMLFormElement> = (event) => {
   event.preventDefault();
-  console.log(formValues);
+
+  const noteData = { title, content, category };
+
+  axios
+   .post('http://127.0.0.1:8000/create-note', noteData)
+   .then((response) => {
+    dispatch(setHasErrors(false));
+    dispatch(setErrorMessage(''));
+    dispatch(setLoading(false));
+    console.log('Note created successfully:', response.data);
+   })
+   .catch((error) => {
+    console.error('Error fetching connection status:', error);
+    dispatch(setHasErrors(true));
+    dispatch(setErrorMessage('An error occurred while creating the note. Please try again later.'));
+    dispatch(setLoading(false));
+   });
+
   resetOrInitialize();
   handleModalClose();
  };
 
+ const handleModalClose = () => setIsModalOpen(false);
+
  return (
-  <div className={`note-form ${isModalOpen ? 'fadeIn' : 'fadeOut'}`}>
+  <div className={`note-form ${isModalOpen ? 'fadeIn' : 'fadeOut'} ${loading && 'isLoading'}`}>
+   {loading && <Loading />}
+
    <div className='model-close-button' onClick={handleModalClose}>
     <div className='close-icon-bar'></div>
     <div className='close-icon-bar'></div>

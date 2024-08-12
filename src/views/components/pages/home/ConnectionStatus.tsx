@@ -27,8 +27,7 @@ export const ConnectionStatus = () => {
     dispatch(setHasErrors(true));
     dispatch(setErrorMessage('Connection Status Could Not Be Verified. Please Check The Connection And Try Again.'));
     dispatch(setLoading(false));
-   })
-   .finally(() => dispatch(setLoading(false)));
+   });
  }, [dispatch]);
 
  return (

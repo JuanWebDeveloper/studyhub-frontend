@@ -126,4 +126,12 @@
  &.fadeOut {
   @include fadeOut-form-modal;
  }
+
+ &.isLoading {
+  pointer-events: none;
+
+  .form-content {
+   opacity: 0.5;
+  }
+ }
 }

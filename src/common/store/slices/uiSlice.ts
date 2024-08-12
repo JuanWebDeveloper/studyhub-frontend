@@ -4,7 +4,7 @@ import { UiSlicesModel } from '@/src/common/models/';
 const initialState: UiSlicesModel = {
  hasErrors: false,
  errorMessage: '',
- loading: true,
+ loading: false,
 };
 
 export const uiSlice = createSlice({
