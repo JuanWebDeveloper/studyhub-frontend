@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { NoteFormModal } from '@/src/views/components';
+import { BookOpen, Plus, Edit, Trash } from 'lucide-react';
 
 const Dashboard = () => {
  const [isModalOpen, setIsModalOpen] = useState(false);
@@ -9,15 +10,27 @@ const Dashboard = () => {
  return (
   <div className='dashboard'>
    <header className='dashboard-header'>
-    <h2>Welcome to the Dashboard</h2>
-    <p>Manage your notes effectively and efficiently, all in one place.</p>
-    <div className='dashboard-actions'>
-     <button onClick={handleModalOpen}>Create Note</button>
-     <button>List Notes</button>
-     <button>Edit Notes</button>
-     <button>Delete Notes</button>
+    <div className='studyhub-logo'>
+     <BookOpen />
+     <h3>
+      <span>Study</span>Hub
+     </h3>
+    </div>
+
+    <div className='dashboard-action'>
+     <button onClick={handleModalOpen}>
+      <Plus /> Nueva Nota
+     </button>
     </div>
    </header>
+   <div className='dashboard-banner'>
+    <h2>¡Bienvenido A Tu Espacio De Estudio Personal!</h2>
+    <p>
+     Aquí puedes organizar tus pensamientos, apuntes y descubrimientos. Crea nuevas notas, edita las existentes y mantén tu conocimiento siempre a
+     mano.
+    </p>
+   </div>
+
    <NoteFormModal modalState={[isModalOpen, setIsModalOpen]} />
   </div>
  );

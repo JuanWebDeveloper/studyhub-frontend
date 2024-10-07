@@ -1,4 +1,5 @@
 .dashboard {
+ background-color: $quaternary-bg;
  left: 0;
  position: absolute;
  padding: $box-onehalf;
@@ -6,89 +7,72 @@
  width: 100vw;
 
  &-header {
-  align-items: center;
-  background-color: $tertiary-bg;
+  background-color: $secondary-bg;
   box-shadow: $primary-shadow;
-  border-radius: 15px;
+  border-radius: 10px 0px 10px 0px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   position: relative;
   padding: $box-half;
   width: 100%;
 
-  h2 {
-   font-weight: 500;
-   text-shadow: $title-shadow;
-   text-align: center;
-  }
-
-  .dashboard-actions {
-   display: flex;
-   justify-content: space-evenly;
-   margin-top: $box-half;
-   position: relative;
-   width: 70%;
-
+  .dashboard-action {
    button {
+    align-items: center;
+    display: flex;
     font-size: toRem(0.85);
     padding: $box-quarter $box-onehalf;
 
-    &:nth-child(1) {
-     background-color: $create-button-bg;
-
-     &:hover {
-      background-color: $create-button-hover-bg;
-     }
-    }
-
-    &:nth-child(3) {
-     background-color: $edit-button-bg;
-
-     &:hover {
-      background-color: $edit-button-hover-bg;
-     }
-    }
-
-    &:nth-child(4) {
-     background-color: $delete-button-bg;
-
-     &:hover {
-      background-color: $delete-button-hover-bg;
-     }
+    svg {
+     margin-right: $box-min;
     }
    }
   }
  }
 
- @media (max-width: 1024px) {
-  &-header {
-   .dashboard-actions {
-    width: 100%;
-   }
+ &-banner {
+  background-color: rgba($color: $primary-bg, $alpha: 0.9);
+  backdrop-filter: blur(5px);
+  box-shadow: $primary-shadow;
+  border-radius: 50px 0px 25px 0px;
+  margin: 0 auto;
+  margin-top: $box-onehalf;
+  position: relative;
+  padding: $box-half;
+  width: 90%;
+
+  h2 {
+   text-align: center;
+   text-shadow: $title-shadow;
+  }
+
+  &::before {
+   background-image: url('/images/utils/particles-pattern.png');
+   box-shadow: inset 4px 4px 10px rgba($text-color, 0.4), inset -4px -4px 10px rgba($primary-bg, 0.702);
+   border-radius: 50px 0px 25px 0px;
+   content: '';
+   height: 100%;
+   left: 0;
+   opacity: 0.7;
+   position: absolute;
+   top: 0;
+   width: 100%;
+   z-index: -1;
   }
  }
 
- @media (max-width: 768px) {
-  &-header {
-   .dashboard-actions {
-    flex-direction: column;
-    width: 55%;
-
-    button {
-     margin-bottom: $box-half;
-
-     &:nth-child(4) {
-      margin-bottom: 0;
-     }
-    }
-   }
-  }
- }
  @media (max-width: 500px) {
   &-header {
-   .dashboard-actions {
-    width: 65%;
+   flex-wrap: wrap;
+   justify-content: center;
+
+   .dashboard-action {
+    width: 100%;
+
+    button {
+     margin: 0 auto;
+     margin-top: $box-quarter;
+    }
    }
   }
  }

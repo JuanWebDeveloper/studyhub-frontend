@@ -26,8 +26,9 @@ p {
 
 button {
  background-color: $button-bg;
+ box-shadow: $tertiary-shadow;
  border: none;
- border-radius: 5px;
+ border-radius: 10px 0px 10px 0px;
  color: $white-color;
  cursor: pointer;
  font-size: toRem(0.9);
@@ -37,6 +38,9 @@ button {
 
  &:hover {
   background-color: $button-bg-hover;
+  box-shadow: $primary-shadow;
+  border-radius: 0px 10px 0px 10px;
+  scale: 1.07;
  }
 }
 

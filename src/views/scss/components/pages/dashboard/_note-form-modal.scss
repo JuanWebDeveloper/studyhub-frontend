@@ -109,12 +109,7 @@
 
    button[type='submit'] {
     align-self: flex-end;
-    background-color: $create-button-bg;
     margin-top: $box-quarter;
-
-    &:hover {
-     background-color: $create-button-hover-bg;
-    }
    }
   }
  }
