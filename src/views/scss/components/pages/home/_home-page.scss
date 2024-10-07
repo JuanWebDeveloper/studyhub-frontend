@@ -24,10 +24,12 @@
    margin-bottom: $box-onehalf;
    padding: $box-half;
 
-   .logo {
-    span {
-     color: $subtitle-color;
-     font-size: toRem(1.2);
+   .studyhub-logo {
+    justify-content: center;
+    margin-bottom: $box-half;
+
+    h3 {
+     color: $title-color;
     }
    }
 

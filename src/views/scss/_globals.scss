@@ -39,3 +39,26 @@ button {
   background-color: $button-bg-hover;
  }
 }
+
+.studyhub-logo {
+ align-items: center;
+ display: flex;
+
+ svg {
+  color: $title-color;
+  height: 35px;
+  margin-right: $box-min;
+  width: 35px;
+ }
+
+ h3 {
+  font-weight: 500;
+  margin: 0;
+  text-shadow: $title-shadow;
+
+  span {
+   color: $text-color;
+   text-shadow: $text-shadow;
+  }
+ }
+}

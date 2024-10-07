@@ -25,7 +25,7 @@ export const ConnectionStatus = () => {
    .catch((error) => {
     console.error('Error fetching connection status:', error);
     dispatch(setHasErrors(true));
-    dispatch(setErrorMessage('Connection Status Could Not Be Verified. Please Check The Connection And Try Again.'));
+    dispatch(setErrorMessage('No se pudo verificar el estado de la conexión con la API. Por favor, revisa la conexión e inténtalo de nuevo.'));
     dispatch(setLoading(false));
    });
  }, [dispatch]);
@@ -40,19 +40,18 @@ export const ConnectionStatus = () => {
    {!loading && !hasErrors && connectionStatus.api_message && (
     <div className='connection-status'>
      <h2>
-      API Connection: <span className='connected'>Connected</span>
+      Conexión con la API: <span className='connected'>Conectado</span>
      </h2>
-     <p className='connected'>{connectionStatus.api_message}</p>
 
      <h2>
-      Database Connection:{' '}
+      Conexión con la base de datos:{' '}
       {!hasErrors && connectionStatus.db_connection ? (
-       <span className='connected'>Connected</span>
+       <span className='connected'>Conectado</span>
       ) : (
-       <span className='disconnected'>Not Connected</span>
+       <span className='disconnected'>No Conectado</span>
       )}
      </h2>
-     <p className={!hasErrors && !connectionStatus.db_connection ? 'disconnected' : 'connected'}>{!hasErrors && connectionStatus.db_message}</p>
+     {/* <p className={!hasErrors && !connectionStatus.db_connection ? 'disconnected' : 'connected'}>{!hasErrors && connectionStatus.db_message}</p> */}
     </div>
    )}
   </>
