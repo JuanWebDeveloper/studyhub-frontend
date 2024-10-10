@@ -31,31 +31,45 @@
    }
   }
 
-  .card-actions {
+  .card-footer {
+   align-items: center;
    display: flex;
-   justify-content: flex-end;
    position: relative;
+   justify-content: space-between;
    width: 100%;
 
-   button {
-    background-color: transparent;
-    box-shadow: none;
-    padding: 0;
+   .note-category {
+    color: $info-color;
 
-    &:last-child {
-     margin-left: $box-half;
+    span {
+     color: $text-color;
+     font-weight: 500;
+    }
+   }
+
+   .card-actions {
+    position: relative;
+
+    button {
+     background-color: transparent;
+     box-shadow: none;
+     padding: 0;
+
+     &:last-child {
+      margin-left: $box-half;
+
+      svg {
+       color: $delete-button-bg;
+      }
+     }
 
      svg {
-      color: $delete-button-bg;
+      color: $edit-button-bg;
      }
-    }
 
-    svg {
-     color: $edit-button-bg;
-    }
-
-    &:hover {
-     scale: 1.2;
+     &:hover {
+      scale: 1.2;
+     }
     }
    }
   }
@@ -63,6 +77,28 @@
 
  @media (max-width: 1024px) {
   width: 48%;
+
+  .card-footer {
+   flex-direction: column;
+
+   .note-category {
+    font-size: toRem(0.9);
+    margin-bottom: $box-onehalf;
+   }
+
+   .card-actions {
+    button {
+     &:last-child {
+      margin-left: $box-onehalf;
+     }
+
+     svg {
+      height: 50px;
+      width: 50px;
+     }
+    }
+   }
+  }
  }
 
  @media (max-width: 600px) {

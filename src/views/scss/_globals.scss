@@ -70,3 +70,21 @@ button {
   }
  }
 }
+
+.error-message-alert,
+.warning-message-alert {
+ color: $white-color;
+ font-size: toRem(0.95);
+ position: absolute;
+ padding: $box-quarter;
+ text-align: center;
+ width: 100%;
+}
+
+.error-message-alert {
+ background-color: $error-color;
+}
+
+.warning-message-alert {
+ background-color: $warning-color;
+}

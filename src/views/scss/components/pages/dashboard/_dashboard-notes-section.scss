@@ -14,9 +14,11 @@
   }
 
   .notes-container {
+   align-items: center;
    display: flex;
    flex-wrap: wrap;
-   justify-content: space-between;
+   justify-content: space-evenly;
+   min-height: 300px;
    position: relative;
    width: 100%;
   }

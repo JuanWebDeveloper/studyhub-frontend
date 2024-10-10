@@ -8,7 +8,7 @@ export const notesSlice = createSlice({
  initialState,
  reducers: {
   setInitializeNotes: (state, action: PayloadAction<NotesSlicesModel[]>) => {
-   state.push(...action.payload);
+   return action.payload;
   },
 
   setAddNote: (state, action: PayloadAction<NotesSlicesModel>) => {
