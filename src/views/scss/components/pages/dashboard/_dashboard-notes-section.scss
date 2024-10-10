@@ -1,0 +1,24 @@
+.notes-section {
+ margin-top: $box-double;
+ position: relative;
+ width: 100%;
+
+ &-content {
+  position: relative;
+  width: 100%;
+
+  h2 {
+   font-weight: 300;
+   letter-spacing: 2px;
+   text-shadow: $title-shadow;
+  }
+
+  .notes-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   position: relative;
+   width: 100%;
+  }
+ }
+}

@@ -1,0 +1,71 @@
+.note-card {
+ align-items: center;
+ background-color: $secondary-bg;
+ border-radius: 10px 0px 10px 0px;
+ box-shadow: $primary-shadow;
+ display: flex;
+ min-height: 300px;
+ max-height: 300px;
+ margin-bottom: $box-onehalf;
+ position: relative;
+ width: 30%;
+
+ &-content {
+  position: relative;
+  padding: $box-half;
+  width: 100%;
+
+  .card-content {
+   position: relative;
+   width: 100%;
+
+   h3 {
+    font-size: toRem(1.5);
+    margin: 0;
+    text-align: center;
+   }
+
+   p {
+    font-size: toRem(0.95);
+    margin: $box-onehalf 0;
+   }
+  }
+
+  .card-actions {
+   display: flex;
+   justify-content: flex-end;
+   position: relative;
+   width: 100%;
+
+   button {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+
+    &:last-child {
+     margin-left: $box-half;
+
+     svg {
+      color: $delete-button-bg;
+     }
+    }
+
+    svg {
+     color: $edit-button-bg;
+    }
+
+    &:hover {
+     scale: 1.2;
+    }
+   }
+  }
+ }
+
+ @media (max-width: 1024px) {
+  width: 48%;
+ }
+
+ @media (max-width: 600px) {
+  width: 100%;
+ }
+}

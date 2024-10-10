@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
-import { NoteFormModal } from '@/src/views/components';
-import { BookOpen, Plus, Edit, Trash } from 'lucide-react';
+import { DashboardNotesSection, NoteFormModal } from '@/src/views/components';
+import { BookOpen, Plus } from 'lucide-react';
 
 const Dashboard = () => {
  const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,7 +30,7 @@ const Dashboard = () => {
      mano.
     </p>
    </div>
-
+   <DashboardNotesSection />
    <NoteFormModal modalState={[isModalOpen, setIsModalOpen]} />
   </div>
  );

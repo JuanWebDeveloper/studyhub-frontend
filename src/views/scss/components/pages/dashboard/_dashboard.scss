@@ -1,6 +1,7 @@
 .dashboard {
  background-color: $quaternary-bg;
  left: 0;
+ min-height: 100vh;
  position: absolute;
  padding: $box-onehalf;
  top: 0;
@@ -39,7 +40,7 @@
   margin-top: $box-onehalf;
   position: relative;
   padding: $box-half;
-  width: 90%;
+  width: 100%;
 
   h2 {
    text-align: center;

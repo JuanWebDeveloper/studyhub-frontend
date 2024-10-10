@@ -10,6 +10,10 @@ body {
  background-color: $primary-bg;
 }
 
+html {
+ overflow-x: hidden;
+}
+
 h1,
 h2 {
  @include title;
