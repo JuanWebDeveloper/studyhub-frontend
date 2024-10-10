@@ -7,11 +7,14 @@ export const notesSlice = createSlice({
  name: 'notes',
  initialState,
  reducers: {
-  setAddNotes: (state, action: PayloadAction<NotesSlicesModel | NotesSlicesModel[]>) => {
-   const notes = Array.isArray(action.payload) ? action.payload : [action.payload];
-   state.push(...notes);
+  setInitializeNotes: (state, action: PayloadAction<NotesSlicesModel[]>) => {
+   state.push(...action.payload);
+  },
+
+  setAddNote: (state, action: PayloadAction<NotesSlicesModel>) => {
+   state.push(action.payload);
   },
  },
 });
 
-export const { setAddNotes } = notesSlice.actions;
+export const { setInitializeNotes, setAddNote } = notesSlice.actions;
