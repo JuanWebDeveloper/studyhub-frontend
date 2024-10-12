@@ -6,4 +6,4 @@ export type { StoreStateType, StoreDispatchType } from './store';
 export { SharedStateProvider } from './provider/sharedStateProvider';
 //*> Export of the actions that modify the global state.
 export { setHasErrors, setErrorMessage, setLoading } from './slices/uiSlice';
-export { setInitializeNotes, setAddNote } from './slices/notesSlice';
+export { setInitializeNotes, setAddNote, setUpdateNote } from './slices/notesSlice';

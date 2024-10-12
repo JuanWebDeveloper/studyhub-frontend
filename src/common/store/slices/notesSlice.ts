@@ -14,7 +14,12 @@ export const notesSlice = createSlice({
   setAddNote: (state, action: PayloadAction<NotesSlicesModel>) => {
    state.push(action.payload);
   },
+
+  setUpdateNote: (state, action: PayloadAction<NotesSlicesModel>) => {
+   const notePosition = state.findIndex((note) => note.id === action.payload.id);
+   notePosition !== -1 && (state[notePosition] = action.payload);
+  },
  },
 });
 
-export const { setInitializeNotes, setAddNote } = notesSlice.actions;
+export const { setInitializeNotes, setAddNote, setUpdateNote } = notesSlice.actions;
