@@ -31,7 +31,7 @@ const Dashboard = () => {
     </p>
    </div>
    <DashboardNotesSection />
-   <NoteFormModal modalState={[isModalOpen, setIsModalOpen]} />
+   {isModalOpen && <NoteFormModal modalState={[isModalOpen, setIsModalOpen]} />}
   </div>
  );
 };

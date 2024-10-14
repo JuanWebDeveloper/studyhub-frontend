@@ -49,12 +49,12 @@ export const DashboardNotesSection = () => {
       <div className='warning-message-alert'>No has creado ninguna nota hasta el momento. Te invitamos a agregar tus primeras notas.</div>
      </div>
     )}
-    {!loading && !hasErrors && notes.length > 0 && (
+    {!loading && notes.length > 0 && (
      <Fragment>
       <h2>Tus Notas</h2>
       <div className='notes-container'>
        {notes.map((note) => (
-        <NoteCard key={note.id} noteData={note} />
+        <NoteCard key={note._id} noteData={note} />
        ))}
       </div>
      </Fragment>

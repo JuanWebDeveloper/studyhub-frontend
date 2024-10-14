@@ -3,42 +3,68 @@ import { ChangeEventHandler } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
 import { noteCategories, customNoteCategorySelectStyles } from '@/src/common/utils';
-import { stateBooleanModel } from '@/src/common/models';
+import { NotesSlicesModel, stateBooleanModel } from '@/src/common/models';
 import { useForm, useStoreSelector, useStoreDispatch } from '@/src/common/hooks';
-import { setLoading, setHasErrors, setErrorMessage } from '@/src/common/store';
+import { setLoading, setHasErrors, setErrorMessage, setAddNote, setUpdateNote } from '@/src/common/store';
 import { Loading } from '@/src/views/components';
 
 type NoteFormModalProps = {
  modalState: stateBooleanModel;
+ noteToEdit?: NotesSlicesModel;
 };
 
-export const NoteFormModal = ({ modalState: [isModalOpen, setIsModalOpen] }: NoteFormModalProps) => {
+export const NoteFormModal = ({ modalState: [isModalOpen, setIsModalOpen], noteToEdit }: NoteFormModalProps) => {
  const { loading } = useStoreSelector((state) => state.ui);
  const dispatch = useStoreDispatch();
 
  //*> Use the custom hook to manage the form state.
- const { formValues, handleInputChange, handleSelectChange, resetOrInitialize } = useForm();
+ const { formValues, handleInputChange, handleSelectChange, resetOrInitialize } = useForm({
+  title: noteToEdit?.title || '',
+  content: noteToEdit?.content || '',
+  category: noteToEdit?.category || '',
+ });
+
  const { title, content, category } = formValues;
 
  const handleSubmit: ChangeEventHandler<HTMLFormElement> = (event) => {
   event.preventDefault();
+  dispatch(setLoading(true));
 
-  const noteData = { title, content, category: category === '' ? 'Uncategorized' : category };
+  const noteData = { title, content, category: category === '' ? 'Sin categoría' : category };
 
-  axios
-   .post('http://127.0.0.1:8000/create-note', noteData)
-   .then((response) => {
-    dispatch(setHasErrors(false));
-    dispatch(setErrorMessage(''));
-    dispatch(setLoading(false));
-    console.log('Note created successfully:', response.data);
-   })
-   .catch((error) => {
-    console.error('Error fetching connection status:', error);
-    dispatch(setHasErrors(true));
-    dispatch(setErrorMessage('An error occurred while creating the note. Please try again later.'));
-    dispatch(setLoading(false));
-   });
+  if (noteToEdit) {
+   console.log(noteData);
+
+   axios
+    .put(`http://127.0.0.1:8000/update-note/${noteToEdit._id}`, noteData)
+    .then((response) => {
+     dispatch(setUpdateNote(response.data));
+     dispatch(setHasErrors(false));
+     dispatch(setErrorMessage(''));
+     dispatch(setLoading(false));
+    })
+    .catch((error) => {
+     console.error('Error fetching connection status:', error);
+     dispatch(setHasErrors(true));
+     dispatch(setErrorMessage('Ocurrió un error al actualizar la nota. Por favor, inténtalo de nuevo más tarde.'));
+     dispatch(setLoading(false));
+    });
+  } else {
+   axios
+    .post('http://127.0.0.1:8000/create-note', noteData)
+    .then((response) => {
+     dispatch(setAddNote(response.data));
+     dispatch(setHasErrors(false));
+     dispatch(setErrorMessage(''));
+     dispatch(setLoading(false));
+    })
+    .catch((error) => {
+     console.error('Error fetching connection status:', error);
+     dispatch(setHasErrors(true));
+     dispatch(setErrorMessage('Ocurrió un error al crear la nota. Por favor, inténtalo de nuevo más tarde.'));
+     dispatch(setLoading(false));
+    });
+  }
 
   resetOrInitialize();
   handleModalClose();
@@ -55,32 +81,38 @@ export const NoteFormModal = ({ modalState: [isModalOpen, setIsModalOpen] }: Not
     <div className='close-icon-bar'></div>
    </div>
    <div className='form-content'>
-    <h2>Create a Note</h2>
+    <h2>{noteToEdit ? 'Editar Nota' : 'Crear Nota'}</h2>
 
     <form onSubmit={handleSubmit}>
      <div className='form-group'>
-      <label htmlFor='title'>Title</label>
-      <input type='text' id='title' name='title' placeholder='Type a title for your note' onChange={handleInputChange} value={title} />
+      <label htmlFor='title'>Título</label>
+      <input type='text' id='title' name='title' placeholder='Escribe un título para tu nota' onChange={handleInputChange} value={title} />
      </div>
 
      <div className='form-group'>
-      <label htmlFor='content'>Content</label>
-      <textarea id='content' name='content' placeholder='Type the content of your note here' onChange={handleInputChange} value={content}></textarea>
+      <label htmlFor='content'>Contenido</label>
+      <textarea
+       id='content'
+       name='content'
+       placeholder='Escribe el contenido de tu nota aquí'
+       onChange={handleInputChange}
+       value={content}
+      ></textarea>
      </div>
 
      <div className='form-group'>
       <Select
        isSearchable={false}
-       placeholder='Select a category for your note'
+       placeholder='Selecciona una categoría para tu nota'
        options={noteCategories}
        styles={customNoteCategorySelectStyles}
        key={category}
        onChange={handleSelectChange}
-       value={noteCategories.find((option) => option.value === category || (category === '' && option.label === 'Uncategorized'))}
+       value={noteCategories.find((option) => option.value === category || (category === '' && option.label === 'Sin categoría'))}
       />
      </div>
 
-     <button type='submit'>Create Note</button>
+     {noteToEdit ? <button type='submit'>Actualizar Nota</button> : <button type='submit'>Crear Nota</button>}
     </form>
    </div>
   </div>

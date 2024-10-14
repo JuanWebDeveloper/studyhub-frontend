@@ -1,5 +1,5 @@
 export interface NotesSlicesModel {
- id: string;
+ _id: string;
  title: string;
  content: string;
  category: string;
