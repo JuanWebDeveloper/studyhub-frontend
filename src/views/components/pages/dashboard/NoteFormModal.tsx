@@ -1,11 +1,10 @@
 'use client';
 import { ChangeEventHandler } from 'react';
 import Select from 'react-select';
-import axios from 'axios';
 import { noteCategories, customNoteCategorySelectStyles } from '@/src/common/utils';
 import { NotesSlicesModel, stateBooleanModel } from '@/src/common/models';
 import { useForm, useStoreSelector, useStoreDispatch } from '@/src/common/hooks';
-import { setLoading, setHasErrors, setErrorMessage, setAddNote, setUpdateNote } from '@/src/common/store';
+import { NotesService } from '@/src/common/services';
 import { Loading } from '@/src/views/components';
 
 type NoteFormModalProps = {
@@ -26,45 +25,11 @@ export const NoteFormModal = ({ modalState: [isModalOpen, setIsModalOpen], noteT
 
  const { title, content, category } = formValues;
 
- const handleSubmit: ChangeEventHandler<HTMLFormElement> = (event) => {
+ const handleSubmit: ChangeEventHandler<HTMLFormElement> = async (event) => {
   event.preventDefault();
-  dispatch(setLoading(true));
 
   const noteData = { title, content, category: category === '' ? 'Sin categoría' : category };
-
-  if (noteToEdit) {
-   console.log(noteData);
-
-   axios
-    .put(`http://127.0.0.1:8000/update-note/${noteToEdit._id}`, noteData)
-    .then((response) => {
-     dispatch(setUpdateNote(response.data));
-     dispatch(setHasErrors(false));
-     dispatch(setErrorMessage(''));
-     dispatch(setLoading(false));
-    })
-    .catch((error) => {
-     console.error('Error fetching connection status:', error);
-     dispatch(setHasErrors(true));
-     dispatch(setErrorMessage('Ocurrió un error al actualizar la nota. Por favor, inténtalo de nuevo más tarde.'));
-     dispatch(setLoading(false));
-    });
-  } else {
-   axios
-    .post('http://127.0.0.1:8000/create-note', noteData)
-    .then((response) => {
-     dispatch(setAddNote(response.data));
-     dispatch(setHasErrors(false));
-     dispatch(setErrorMessage(''));
-     dispatch(setLoading(false));
-    })
-    .catch((error) => {
-     console.error('Error fetching connection status:', error);
-     dispatch(setHasErrors(true));
-     dispatch(setErrorMessage('Ocurrió un error al crear la nota. Por favor, inténtalo de nuevo más tarde.'));
-     dispatch(setLoading(false));
-    });
-  }
+  await NotesService.saveOrUpdateNote(dispatch, noteData, noteToEdit);
 
   resetOrInitialize();
   handleModalClose();

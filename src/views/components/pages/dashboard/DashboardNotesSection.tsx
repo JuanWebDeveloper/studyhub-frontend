@@ -1,9 +1,8 @@
 'use client';
 
 import { Fragment, useEffect } from 'react';
-import axios from 'axios';
 import { useStoreSelector, useStoreDispatch } from '@/src/common/hooks';
-import { setLoading, setHasErrors, setErrorMessage, setInitializeNotes } from '@/src/common/store';
+import { NotesService } from '@/src/common/services';
 import { Loading } from '@/src/views/components';
 import { NoteCard } from '@/src/views/components';
 
@@ -13,22 +12,7 @@ export const DashboardNotesSection = () => {
  const dispatch = useStoreDispatch();
 
  useEffect(() => {
-  dispatch(setLoading(true));
-
-  axios
-   .get('http://127.0.0.1:8000/all-notes')
-   .then((response) => {
-    dispatch(setInitializeNotes(response.data));
-    dispatch(setHasErrors(false));
-    dispatch(setErrorMessage(''));
-    dispatch(setLoading(false));
-   })
-   .catch((error) => {
-    console.error('Error fetching connection status:', error);
-    dispatch(setHasErrors(true));
-    dispatch(setErrorMessage('No se pudieron cargar las notas desde la API. Por favor, verifica la conexión e inténtalo nuevamente.'));
-    dispatch(setLoading(false));
-   });
+  NotesService.getAllNotes(dispatch);
  }, [dispatch]);
 
  return (
