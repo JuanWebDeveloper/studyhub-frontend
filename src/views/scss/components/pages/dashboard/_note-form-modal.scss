@@ -6,9 +6,10 @@
  height: 100vh;
  justify-content: center;
  left: 0;
- position: absolute;
+ position: fixed;
  top: 0;
  width: 100vw;
+ z-index: 100;
 
  .model-close-button {
   cursor: pointer;
@@ -42,7 +43,6 @@
  }
 
  .form-content {
-  background-color: rgba($secondary-bg, 0.55);
   border-radius: 10px;
   box-shadow: $tertiary-shadow;
   min-width: 50%;
@@ -51,7 +51,6 @@
   padding: $box-onehalf;
 
   h2 {
-   color: $success-color;
    text-align: center;
   }
 
@@ -67,15 +66,11 @@
     width: 100%;
 
     label {
-     color: $text-color;
      cursor: pointer;
+     display: block;
      font-size: toRem(0.9);
-     transition: $transition-tertiary;
-
-     &:hover {
-      scale: 1.1;
-      transform: translateX(5px);
-     }
+     scale: 1.04;
+     transform: translateY(-5px) translateX(5px);
     }
 
     input[type='text'],
@@ -91,7 +86,6 @@
 
      &:focus {
       box-shadow: $tertiary-shadow;
-      border-color: $edit-button-bg;
       outline: none;
      }
     }
@@ -110,6 +104,68 @@
    button[type='submit'] {
     align-self: flex-end;
     margin-top: $box-quarter;
+   }
+  }
+
+  &.form-create {
+   background-color: rgba($create-button-bg, 0.1);
+
+   h2 {
+    color: $success-color;
+   }
+
+   form {
+    .form-group {
+     label {
+      color: $success-color;
+     }
+
+     input[type='text'],
+     textarea {
+      &:focus {
+       border-color: $success-color;
+      }
+     }
+    }
+
+    button {
+     background-color: $create-button-bg;
+
+     &:hover {
+      background-color: $create-button-hover-bg;
+     }
+    }
+   }
+  }
+
+  &.form-edit {
+   background-color: rgba($edit-button-bg, 0.1);
+
+   h2 {
+    color: $info-color;
+   }
+
+   form {
+    .form-group {
+     label {
+      color: $info-color;
+     }
+
+     input[type='text'],
+     textarea {
+      &:focus {
+       border-color: $info-color;
+      }
+     }
+    }
+
+    button {
+     background-color: $edit-button-bg;
+
+     &:hover {
+      background-color: $edit-button-hover-bg;
+     }
+    }
    }
   }
  }

@@ -1,7 +1,7 @@
 'use client';
 import { ChangeEventHandler } from 'react';
 import Select from 'react-select';
-import { noteCategories, customNoteCategorySelectStyles } from '@/src/common/utils';
+import { noteCategories, categorySelectorStylesFormCreate, categorySelectorStylesFormEdit } from '@/src/common/utils';
 import { NotesSlicesModel, stateBooleanModel } from '@/src/common/models';
 import { useForm, useStoreSelector, useStoreDispatch } from '@/src/common/hooks';
 import { NotesService } from '@/src/common/services';
@@ -38,15 +38,15 @@ export const NoteFormModal = ({ modalState: [isModalOpen, setIsModalOpen], noteT
  const handleModalClose = () => setIsModalOpen(false);
 
  return (
-  <div className={`note-form ${isModalOpen ? 'fadeIn' : 'fadeOut'} ${loading && 'isLoading'}`}>
+  <div className={`note-form  ${isModalOpen ? 'fadeIn' : 'fadeOut'}  ${loading && 'isLoading'}`}>
    {loading && <Loading />}
 
    <div className='model-close-button' onClick={handleModalClose}>
     <div className='close-icon-bar'></div>
     <div className='close-icon-bar'></div>
    </div>
-   <div className='form-content'>
-    <h2>{noteToEdit ? 'Editar Nota' : 'Crear Nota'}</h2>
+   <div className={`form-content ${noteToEdit ? 'form-edit' : 'form-create'}`}>
+    <h2>{noteToEdit ? 'Modificar Registro de Nota' : 'Nuevo Registro de Nota'}</h2>
 
     <form onSubmit={handleSubmit}>
      <div className='form-group'>
@@ -70,14 +70,14 @@ export const NoteFormModal = ({ modalState: [isModalOpen, setIsModalOpen], noteT
        isSearchable={false}
        placeholder='Selecciona una categoría para tu nota'
        options={noteCategories}
-       styles={customNoteCategorySelectStyles}
+       styles={noteToEdit ? categorySelectorStylesFormEdit : categorySelectorStylesFormCreate}
        key={category}
        onChange={handleSelectChange}
        value={noteCategories.find((option) => option.value === category || (category === '' && option.label === 'Sin categoría'))}
       />
      </div>
 
-     {noteToEdit ? <button type='submit'>Actualizar Nota</button> : <button type='submit'>Crear Nota</button>}
+     {noteToEdit ? <button type='submit'>Modificar Nota</button> : <button type='submit'>Registrar Nota</button>}
     </form>
    </div>
   </div>

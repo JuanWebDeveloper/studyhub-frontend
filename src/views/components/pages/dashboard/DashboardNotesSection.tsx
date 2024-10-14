@@ -18,7 +18,7 @@ export const DashboardNotesSection = () => {
  return (
   <div className='notes-section'>
    <div className='notes-section-content'>
-    {loading && (
+    {loading && notes.length < 1 && (
      <div className='notes-container'>
       <Loading />
      </div>

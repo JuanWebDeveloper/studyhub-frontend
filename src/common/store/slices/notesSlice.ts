@@ -16,7 +16,7 @@ export const notesSlice = createSlice({
   },
 
   setUpdateNote: (state, action: PayloadAction<NotesSlicesModel>) => {
-   const notePosition = state.findIndex((note) => note.id === action.payload.id);
+   const notePosition = state.findIndex((note) => note._id === action.payload._id);
    notePosition !== -1 && (state[notePosition] = action.payload);
   },
  },
