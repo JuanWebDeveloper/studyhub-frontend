@@ -71,6 +71,7 @@ button {
  }
 }
 
+.success-message-alert,
 .error-message-alert,
 .warning-message-alert {
  color: $white-color;
@@ -79,6 +80,10 @@ button {
  padding: $box-quarter;
  text-align: center;
  width: 100%;
+}
+
+.success-message-alert {
+ background-color: $success-color;
 }
 
 .error-message-alert {

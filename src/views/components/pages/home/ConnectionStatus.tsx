@@ -12,22 +12,24 @@ export const ConnectionStatus = () => {
  const dispatch = useStoreDispatch();
 
  useEffect(() => {
-  dispatch(setLoading(true));
+  const fetchConnectionStatus = async () => {
+   dispatch(setLoading(true));
 
-  axios
-   .get('http://127.0.0.1:8000/connection-status')
-   .then((response) => {
+   try {
+    const response = await axios.get('http://127.0.0.1:8000/connection-status');
     setConnectionStatus(response.data);
     dispatch(setHasErrors(false));
     dispatch(setErrorMessage(''));
-    dispatch(setLoading(false));
-   })
-   .catch((error) => {
+   } catch (error) {
     console.error('Error fetching connection status:', error);
     dispatch(setHasErrors(true));
     dispatch(setErrorMessage('No se pudo verificar el estado de la conexión con la API. Por favor, revisa la conexión e inténtalo de nuevo.'));
+   } finally {
     dispatch(setLoading(false));
-   });
+   }
+  };
+
+  fetchConnectionStatus();
  }, [dispatch]);
 
  return (
@@ -40,18 +42,17 @@ export const ConnectionStatus = () => {
    {!loading && !hasErrors && connectionStatus.api_message && (
     <div className='connection-status'>
      <h2>
-      Conexión con la API: <span className='connected'>Conectado</span>
+      Conexión con la API: <span className='connected'>Exitosa</span>
      </h2>
+     <p className='success-message-alert'>{connectionStatus.api_message && connectionStatus.api_message}</p>
 
      <h2>
       Conexión con la base de datos:{' '}
-      {!hasErrors && connectionStatus.db_connection ? (
-       <span className='connected'>Conectado</span>
-      ) : (
-       <span className='disconnected'>No Conectado</span>
-      )}
+      {!hasErrors && connectionStatus.db_connection ? <span className='connected'>Exitosa</span> : <span className='disconnected'>Fallida</span>}
      </h2>
-     {/* <p className={!hasErrors && !connectionStatus.db_connection ? 'disconnected' : 'connected'}>{!hasErrors && connectionStatus.db_message}</p> */}
+     <p className={!hasErrors && !connectionStatus.db_connection ? 'error-message-alert' : 'success-message-alert'}>
+      {!hasErrors && connectionStatus.db_message}
+     </p>
     </div>
    )}
   </>

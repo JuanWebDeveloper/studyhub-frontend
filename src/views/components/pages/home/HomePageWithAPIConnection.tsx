@@ -21,7 +21,7 @@ export const HomePageWithAPIConnection = () => {
      <h2>El estado actual de la conexión es:</h2>
     </div>
     <ConnectionStatus />
-    {!loading && hasErrors && <h2 className='disconnected'>{errorMessage}</h2>}
+    {!loading && hasErrors && <div className='error-message-alert'>{errorMessage}</div>}
    </div>
   </div>
  );

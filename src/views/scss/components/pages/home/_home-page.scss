@@ -46,17 +46,21 @@
    min-height: 100px;
    position: relative;
 
-   h2:last-child {
-    margin-bottom: 0;
+   .connected {
+    color: $success-color;
+   }
+
+   .disconnected {
+    color: $error-color;
+   }
+
+   p {
+    position: relative;
    }
   }
 
-  .connected {
-   color: $success-color;
-  }
-
-  .disconnected {
-   color: $error-color;
+  .error-message-alert {
+   position: relative;
   }
  }
 
