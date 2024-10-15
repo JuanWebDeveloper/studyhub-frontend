@@ -1,0 +1,196 @@
+.note-form {
+ align-items: center;
+ background-color: rgba($quaternary-bg, 0.65);
+ backdrop-filter: blur(5px);
+ display: flex;
+ height: 100vh;
+ justify-content: center;
+ left: 0;
+ position: fixed;
+ top: 0;
+ width: 100vw;
+ z-index: 100;
+
+ .model-close-button {
+  cursor: pointer;
+  height: 35px;
+  position: absolute;
+  right: $box-onehalf;
+  top: $box-onehalf;
+  width: 35px;
+  z-index: 10;
+
+  .close-icon-bar {
+   background-color: $text-color;
+   box-shadow: $secondary-shadow;
+   height: 3px;
+   transition: $transition-secondary;
+   width: 100%;
+
+   &:first-child {
+    transform: rotate(45deg);
+   }
+
+   &:last-child {
+    transform: rotate(-45deg);
+   }
+  }
+
+  &:hover .close-icon-bar {
+   box-shadow: $tertiary-shadow;
+   scale: 1.25;
+  }
+ }
+
+ .form-content {
+  border-radius: 10px;
+  box-shadow: $tertiary-shadow;
+  min-width: 50%;
+  max-width: 90%;
+  position: relative;
+  padding: $box-onehalf;
+
+  h2 {
+   text-align: center;
+  }
+
+  form {
+   align-items: flex-start;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   width: 100%;
+
+   .form-group {
+    position: relative;
+    width: 100%;
+
+    label {
+     cursor: pointer;
+     display: block;
+     font-size: toRem(0.9);
+     scale: 1.04;
+     transform: translateY(-5px) translateX(5px);
+    }
+
+    input[type='text'],
+    textarea {
+     background-color: rgba($primary-bg, 0.584);
+     box-shadow: $secondary-shadow;
+     border-radius: 5px;
+     border: 2px solid transparent;
+     font-size: toRem(0.8);
+     padding: $box-quarter;
+     transition: $transition-fourth;
+     width: 100%;
+
+     &:focus {
+      box-shadow: $tertiary-shadow;
+      outline: none;
+     }
+    }
+
+    textarea {
+     min-height: 100px;
+     max-height: 175px;
+     resize: vertical;
+    }
+
+    div {
+     transition: $transition-fourth;
+    }
+   }
+
+   button {
+    align-self: flex-end;
+    margin-top: $box-quarter;
+   }
+  }
+
+  &.form-create {
+   background-color: rgba($create-button-bg, 0.1);
+
+   h2 {
+    color: $success-color;
+   }
+
+   form {
+    .form-group {
+     label {
+      color: $success-color;
+     }
+
+     input[type='text'],
+     textarea {
+      &:focus {
+       border-color: $success-color;
+      }
+     }
+    }
+
+    button {
+     background-color: $create-button-bg;
+
+     &:hover {
+      background-color: $create-button-hover-bg;
+     }
+    }
+   }
+  }
+
+  &.form-edit {
+   background-color: rgba($edit-button-bg, 0.1);
+
+   h2 {
+    color: $info-color;
+   }
+
+   form {
+    .form-group {
+     label {
+      color: $info-color;
+     }
+
+     input[type='text'],
+     textarea {
+      &:focus {
+       border-color: $info-color;
+      }
+     }
+    }
+
+    button {
+     background-color: $edit-button-bg;
+
+     &:hover {
+      background-color: $edit-button-hover-bg;
+     }
+    }
+   }
+  }
+ }
+
+ &.fadeIn {
+  @include fadeIn-form-modal;
+ }
+
+ &.fadeOut {
+  @include fadeOut-form-modal;
+ }
+
+ &.disabled {
+  .form-content {
+   form {
+    pointer-events: none;
+   }
+  }
+ }
+
+ &.isLoading {
+  pointer-events: none;
+
+  .form-content {
+   opacity: 0.5;
+  }
+ }
+}

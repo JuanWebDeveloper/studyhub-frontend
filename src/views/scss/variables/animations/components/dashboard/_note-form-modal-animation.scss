@@ -1,0 +1,31 @@
+@mixin fadeIn-form-modal {
+ animation: fadeIn-form-modal 0.7s cubic-bezier(0.175, 0.885, 0.32, 1) both;
+}
+
+@keyframes fadeIn-form-modal {
+ 0% {
+  opacity: 0;
+  transform: scaleX(0) scaleY(0);
+ }
+
+ 100% {
+  opacity: 1;
+  transform: scaleX(1) scaleY(1);
+ }
+}
+
+@mixin fadeOut-form-modal {
+ animation: fadeOut-form-modal 0.7s cubic-bezier(0.175, 0.885, 0.32, 1) both;
+}
+
+@keyframes fadeOut-form-modal {
+ 0% {
+  opacity: 1;
+  transform: scaleX(1) scaleY(1);
+ }
+
+ 100% {
+  opacity: 0;
+  transform: scaleX(0) scaleY(0);
+ }
+}

@@ -1,4 +1,5 @@
 'use client';
+import { BookOpen } from 'lucide-react';
 import { ConnectionStatus } from '@/src/views/components';
 import { useStoreSelector } from '@/src/common/hooks';
 
@@ -9,15 +10,18 @@ export const HomePageWithAPIConnection = () => {
   <div className='home-page'>
    <div className='content'>
     <div className='header-info'>
-     <h1 className='logo'>
-      Study<span>Hub</span>
-     </h1>
-     <p>StudyHub is a platform for collaborative learning and study management.</p>
-     <h3>This Page Verifies The Connection With The Api And The Database.</h3>
-     <h2>The current connection status is:</h2>
+     <div className='studyhub-logo'>
+      <BookOpen />
+      <h3>
+       <span>Study</span>Hub
+      </h3>
+     </div>
+     <p>StudyHub es una plataforma para el aprendizaje colaborativo y la gestión de estudios.</p>
+     <h3>Esta página verifica la conexión con la API y la base de datos.</h3>
+     <h2>El estado actual de la conexión es:</h2>
     </div>
     <ConnectionStatus />
-    {!loading && hasErrors && <h2 className='disconnected'>{errorMessage}</h2>}
+    {!loading && hasErrors && <div className='error-message-alert'>{errorMessage}</div>}
    </div>
   </div>
  );

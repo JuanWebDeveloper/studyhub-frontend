@@ -1,0 +1,73 @@
+.confirm-modal {
+ background-color: rgba($secondary-bg, 0.6);
+ backdrop-filter: blur(5px);
+ box-shadow: $tertiary-shadow;
+ border-radius: 5px;
+ left: 50%;
+ pointer-events: all;
+ padding: $box-half;
+ position: absolute;
+ top: 50%;
+ transform: translate(-50%, -50%);
+ width: 90vw;
+ z-index: 100;
+
+ &-content {
+  @include fadeIn-form-modal;
+
+  .modal-text {
+   h2 {
+    color: $title-color !important;
+    margin: 0;
+    text-align: center;
+   }
+
+   p {
+    margin: $box-half 0;
+   }
+  }
+
+  .modal-actions {
+   display: flex;
+   justify-content: flex-end;
+
+   button {
+    background-color: $create-button-bg !important;
+
+    &:hover {
+     background-color: $create-button-hover-bg !important;
+    }
+
+    &:last-child {
+     background-color: $delete-button-bg !important;
+     margin-left: $box-onehalf;
+
+     &:hover {
+      background-color: $delete-button-hover-bg !important;
+     }
+    }
+   }
+  }
+ }
+
+ &.confirm-delete {
+  position: fixed;
+ }
+
+ @media (max-width: 600px) {
+  &-content {
+   .modal-actions {
+    flex-direction: column;
+
+    button {
+     width: 100%;
+
+     &:last-child {
+      margin-left: 0;
+      margin-top: $box-half;
+     }
+    }
+   }
+  }
+ }
+}

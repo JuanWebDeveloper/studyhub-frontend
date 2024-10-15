@@ -24,10 +24,12 @@
    margin-bottom: $box-onehalf;
    padding: $box-half;
 
-   .logo {
-    span {
-     color: $subtitle-color;
-     font-size: toRem(1.2);
+   .studyhub-logo {
+    justify-content: center;
+    margin-bottom: $box-half;
+
+    h3 {
+     color: $title-color;
     }
    }
 
@@ -41,17 +43,24 @@
   }
 
   .connection-status {
-   h2:last-child {
-    margin-bottom: 0;
+   min-height: 100px;
+   position: relative;
+
+   .connected {
+    color: $success-color;
+   }
+
+   .disconnected {
+    color: $error-color;
+   }
+
+   p {
+    position: relative;
    }
   }
 
-  .connected {
-   color: $success-color;
-  }
-
-  .disconnected {
-   color: $error-color;
+  .error-message-alert {
+   position: relative;
   }
  }
 
