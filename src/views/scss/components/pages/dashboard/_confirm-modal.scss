@@ -10,6 +10,7 @@
  top: 50%;
  transform: translate(-50%, -50%);
  width: 90vw;
+ z-index: 100;
 
  &-content {
   @include fadeIn-form-modal;
@@ -47,6 +48,10 @@
     }
    }
   }
+ }
+
+ &.confirm-delete {
+  position: fixed;
  }
 
  @media (max-width: 600px) {

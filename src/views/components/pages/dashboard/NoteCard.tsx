@@ -2,11 +2,22 @@
 import { Fragment, useState } from 'react';
 import { Edit, Trash } from 'lucide-react';
 import { NotesSlicesModel } from '@/src/common/models';
-import { NoteFormModal } from './NoteFormModal';
+import { NoteFormModal, ConfirmDeleteModal } from '@/src/views/components';
+import { useStoreDispatch } from '@/src/common/hooks';
+import { NotesService } from '@/src/common/services';
 
 export const NoteCard = ({ noteData }: { noteData: NotesSlicesModel }) => {
- const { title, content, category } = noteData;
  const [isModalOpen, setIsModalOpen] = useState(false);
+ const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
+ const { _id, title, content, category } = noteData;
+ const dispatch = useStoreDispatch();
+
+ const handleDelete = async () => {
+  await NotesService.deleteNote(dispatch, _id);
+  setIsConfirmDeleteOpen(false);
+ };
+
+ const handleCancelDelete = () => setIsConfirmDeleteOpen(false);
 
  return (
   <Fragment>
@@ -24,13 +35,15 @@ export const NoteCard = ({ noteData }: { noteData: NotesSlicesModel }) => {
        <button onClick={() => setIsModalOpen(true)}>
         <Edit />
        </button>
-       <button>
+       <button onClick={() => setIsConfirmDeleteOpen(true)}>
         <Trash />
        </button>
       </div>
      </div>
     </div>
    </div>
+
+   {isConfirmDeleteOpen && <ConfirmDeleteModal onConfirm={handleDelete} onCancel={handleCancelDelete} />}
    {isModalOpen && <NoteFormModal modalState={[isModalOpen, setIsModalOpen]} noteToEdit={noteData} />}
   </Fragment>
  );

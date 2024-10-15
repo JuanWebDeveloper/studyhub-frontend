@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setLoading, setHasErrors, setErrorMessage, setInitializeNotes, setAddNote, setUpdateNote, setDeleteNote } from '@/src/common/store';
-import { NotesSlicesModel } from '@/src/common/models';
+import { NotesSlicesModel, NotesCreateSlicesModel } from '@/src/common/models';
 
 export class NotesService {
  static async getAllNotes(dispatch: Function) {
@@ -19,7 +19,7 @@ export class NotesService {
   }
  }
 
- static async saveOrUpdateNote(dispatch: Function, noteData: NotesSlicesModel, noteToEdit?: NotesSlicesModel) {
+ static async saveOrUpdateNote(dispatch: Function, noteData: NotesCreateSlicesModel, noteToEdit?: NotesSlicesModel) {
   try {
    dispatch(setLoading(true));
 
