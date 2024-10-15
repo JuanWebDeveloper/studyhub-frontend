@@ -101,7 +101,7 @@
     }
    }
 
-   button[type='submit'] {
+   button {
     align-self: flex-end;
     margin-top: $box-quarter;
    }
@@ -176,6 +176,14 @@
 
  &.fadeOut {
   @include fadeOut-form-modal;
+ }
+
+ &.disabled {
+  .form-content {
+   form {
+    pointer-events: none;
+   }
+  }
  }
 
  &.isLoading {

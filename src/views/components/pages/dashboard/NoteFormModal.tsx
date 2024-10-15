@@ -1,11 +1,11 @@
 'use client';
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 import Select from 'react-select';
 import { noteCategories, categorySelectorStylesFormCreate, categorySelectorStylesFormEdit } from '@/src/common/utils';
 import { NotesSlicesModel, stateBooleanModel } from '@/src/common/models';
 import { useForm, useStoreSelector, useStoreDispatch } from '@/src/common/hooks';
 import { NotesService } from '@/src/common/services';
-import { Loading } from '@/src/views/components';
+import { Loading, ConfirmUpdateModal } from '@/src/views/components';
 
 type NoteFormModalProps = {
  modalState: stateBooleanModel;
@@ -13,6 +13,7 @@ type NoteFormModalProps = {
 };
 
 export const NoteFormModal = ({ modalState: [isModalOpen, setIsModalOpen], noteToEdit }: NoteFormModalProps) => {
+ const [confirmUpdate, setConfirmUpdate] = useState(false);
  const { loading } = useStoreSelector((state) => state.ui);
  const dispatch = useStoreDispatch();
 
@@ -38,7 +39,7 @@ export const NoteFormModal = ({ modalState: [isModalOpen, setIsModalOpen], noteT
  const handleModalClose = () => setIsModalOpen(false);
 
  return (
-  <div className={`note-form  ${isModalOpen ? 'fadeIn' : 'fadeOut'}  ${loading && 'isLoading'}`}>
+  <div className={`note-form  ${isModalOpen ? 'fadeIn' : 'fadeOut'} ${confirmUpdate && 'disabled'}  ${loading && 'isLoading'}`}>
    {loading && <Loading />}
 
    <div className='model-close-button' onClick={handleModalClose}>
@@ -77,7 +78,14 @@ export const NoteFormModal = ({ modalState: [isModalOpen, setIsModalOpen], noteT
       />
      </div>
 
-     {noteToEdit ? <button type='submit'>Modificar Nota</button> : <button type='submit'>Registrar Nota</button>}
+     {noteToEdit ? (
+      <button type='button' onClick={() => setConfirmUpdate(true)}>
+       Modificar Nota
+      </button>
+     ) : (
+      <button type='submit'>Registrar Nota</button>
+     )}
+     {confirmUpdate && <ConfirmUpdateModal confirmUpdate={setIsModalOpen} />}
     </form>
    </div>
   </div>
