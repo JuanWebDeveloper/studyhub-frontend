@@ -19,7 +19,11 @@ export const notesSlice = createSlice({
    const notePosition = state.findIndex((note) => note._id === action.payload._id);
    notePosition !== -1 && (state[notePosition] = action.payload);
   },
+
+  setDeleteNote: (state, action: PayloadAction<string>) => {
+   return state.filter((note) => note._id !== action.payload);
+  },
  },
 });
 
-export const { setInitializeNotes, setAddNote, setUpdateNote } = notesSlice.actions;
+export const { setInitializeNotes, setAddNote, setUpdateNote, setDeleteNote } = notesSlice.actions;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setLoading, setHasErrors, setErrorMessage, setInitializeNotes, setAddNote, setUpdateNote } from '@/src/common/store';
+import { setLoading, setHasErrors, setErrorMessage, setInitializeNotes, setAddNote, setUpdateNote, setDeleteNote } from '@/src/common/store';
 import { NotesSlicesModel } from '@/src/common/models';
 
 export class NotesService {
@@ -40,6 +40,22 @@ export class NotesService {
    noteToEdit
     ? dispatch(setErrorMessage('Ocurrió un error al actualizar la nota. Por favor, inténtalo de nuevo más tarde.'))
     : dispatch(setErrorMessage('Ocurrió un error al crear la nota. Por favor, inténtalo de nuevo más tarde.'));
+  } finally {
+   dispatch(setLoading(false));
+  }
+ }
+
+ static async deleteNote(dispatch: Function, noteId: string) {
+  try {
+   dispatch(setLoading(true));
+   const response = await axios.delete(`http://127.0.0.1:8000/delete-note/${noteId}`);
+   dispatch(setDeleteNote(noteId));
+   dispatch(setHasErrors(false));
+   dispatch(setErrorMessage(''));
+  } catch (error) {
+   console.error('Error deleting note:', error);
+   dispatch(setHasErrors(true));
+   dispatch(setErrorMessage('Ocurrió un error al eliminar la nota. Por favor, verifica la conexión e inténtalo nuevamente.'));
   } finally {
    dispatch(setLoading(false));
   }
